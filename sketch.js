@@ -21,6 +21,7 @@ let mandHoogte = 15;
 let appelV = 10;
 let score;
 let punt;
+let img1;
 
 
 /* ********************************************* */
@@ -37,6 +38,7 @@ function setup() {
   punt = false;
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
+  img1 = loadImage('appel.png');
 }
 
 /**
@@ -52,6 +54,7 @@ function draw() {
   noStroke();         // geen lijntje om de vorm heen
   fill(255, 0, 0)     // vulkleur wordt rood
   ellipse(appelX, appelY, appelBreedte, appelBreedte);
+  image(img1,appelX - 50, appelY - 50, appelBreedte * 2, appelBreedte * 2);
   appelY = appelY + appelV;
   if(mouseX >= 0 && mouseX + mandBreedte <= 1280){
     rect(mouseX, mandY, mandBreedte, mandHoogte);
