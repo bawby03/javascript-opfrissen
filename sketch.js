@@ -87,6 +87,6 @@ function draw() {
 }
 
 function randomizer(){
-  appelX = random(50, 1230);
+  appelX = random(100, 1180);
   appelY = random(-1000, -200);
 }
