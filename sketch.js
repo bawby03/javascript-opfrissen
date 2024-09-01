@@ -13,8 +13,14 @@
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
 let appelX = 600; // x-positie van appel
-let appelY = 50;  // y-positie van appel
-let appelBreedte = 20;
+let appelY = 55;  // y-positie van appel
+let appelBreedte = 50;
+let mandY = 650;
+let mandBreedte = 100;
+let mandHoogte = 15;
+let appelV = 10;
+let score;
+let punt;
 
 
 /* ********************************************* */
@@ -27,6 +33,8 @@ let appelBreedte = 20;
  * de p5 library, zodra het spel geladen is in de browser
  */
 function setup() {
+  score = 0;
+  punt = false;
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 }
@@ -43,5 +51,29 @@ function draw() {
   // teken appel
   noStroke();         // geen lijntje om de vorm heen
   fill(255, 0, 0)     // vulkleur wordt rood
-  rect(appelX, appelY, appleBreedte, appleBreedte);
+  ellipse(appelX, appelY, appelBreedte, appelBreedte);
+  appelY = appelY + appelV;
+  if(mouseX >= 0 && mouseX + mandBreedte <= 1280){
+    rect(mouseX, mandY, mandBreedte, mandHoogte);
+  }
+  if (appelY > 720){
+    randomizer();
+  }
+
+  if(mandY <= appelY + appelBreedte - 37 && mouseX <= appelX + appelBreedte && mouseX + mandBreedte >= appelX){
+    randomizer();
+    punt = true;
+      if(punt === true){
+      score++;
+      punt = false;
+      }
+  }
+  textSize(50);
+  fill(255,255,255);
+  text("score: " + score, 50, 50);
+}
+
+function randomizer(){
+  appelX = random(50, 1230);
+  appelY = random(-1000, -200);
 }
